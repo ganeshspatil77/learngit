@@ -14,4 +14,4 @@ for(let i=0; i<data.length; i++){
     }
 }
 // console.log(data.sort());
-console.log(data)
+console.log("the sorted data is" +data)
