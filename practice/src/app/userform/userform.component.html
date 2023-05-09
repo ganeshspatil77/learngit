@@ -1,0 +1,34 @@
+<p>userform works!</p>
+
+<form #basicform="ngForm" (submit)="getData(basicform.value)">
+    <input type="text" ngModel name="user" placeholder="Enter the name"/>
+    <br/><br/>
+    <input type="text" ngModel name="email" placeholder="Enter the email"/><br/><br/>
+    <input type="text" ngModel name="pass" placeholder="Enter the password"/><br/><br/>
+
+    <button>Register</button>
+</form>
+
+<!-- <ul>
+    <li> {{userData.user}} </li>
+    <li> {{userData.email}} </li>
+    <li> {{userData.pass}} </li>
+</ul> -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of userData">
+            <td> {{item.user}} </td>
+            <td> {{item.email}} </td>
+            <td> {{item.pass}} </td>
+        </tr>
+    </tbody>
+</table>
+ 

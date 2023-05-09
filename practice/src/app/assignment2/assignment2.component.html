@@ -1,0 +1,53 @@
+<form #userform="ngForm">
+
+    <label for="item">Name of Item : </label>
+    <select  [(ngModel)]="item" name="item2" (ngModelChange)="onChangeEvent()">
+        <option [ngValue]="t" selected>Select</option>
+        <option *ngFor="let item1 of itemarr" [ngValue]="item1"> {{item1.item}} </option>
+    </select> <br><br>
+    Enter Price : &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<input type="number"  [(ngModel)]="price" name="price" placeholder="Enter the price" readonly/>
+    <br/><br/>
+    Enter Quantity : &nbsp; <input type="number" (ngModelChange)="CalculateAmt()" [(ngModel)]="qty" #quantity="ngModel"  name="quantity" placeholder="Enter the quantity" required [pattern]="integerRegix"/><br/>
+    <span *ngIf="quantity.invalid && quantity.touched">Enter valid</span><br/>
+    
+    Enter Discount : &nbsp;&nbsp;<input type="number" [(ngModel)]="discount" (ngModelChange)="CalculateAmt()" #dis="ngModel" name="discount" placeholder="Enter the discount" required [pattern]="integerRegix"/><br/>
+    <span *ngIf="dis.invalid && dis.touched">Invalid**</span>
+    <br/>
+    Enter Amount : &nbsp;&nbsp;<input type="number" [(ngModel)]="amount" #amt="ngModel" name="amount" placeholder="Enter the amount" required [pattern]="integerRegix" readonly/><br/>
+    <span *ngIf="amt.invalid && amt.touched">Invalid Amount***</span><br/>
+
+    <button class="btn btn-success" [disabled]="userform.invalid" (click)="getData()">Add</button>
+</form>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sr.No</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Delete</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of itemdata; let i=index">
+        <td> {{i+1}} </td>
+        <td> {{item.item}} </td>
+        <td> {{item.price}} </td>
+        <td> {{item.discount}} </td>
+        <td> {{item.quantity}} </td>
+        <td> {{item.amount}} </td>
+        <td> <button type="button" class="btn btn-danger" (click)="OnDeleteRow(i,item.amount)">Delete</button></td>
+    </tr>
+    
+</tbody>
+<tfoot>
+     <tr>
+        <td colspan="5">Total</td>
+        <td> {{total}} </td>
+     </tr>   
+</tfoot>
+</table>

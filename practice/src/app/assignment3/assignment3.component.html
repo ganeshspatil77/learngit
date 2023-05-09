@@ -1,0 +1,28 @@
+
+<div class="col-4">
+Enter Your Email: &nbsp; &nbsp;<input type="email" email class="form-control" ngModel name="myemail" #email="ngModel" required placeholder="Enter Your Mail">
+<span *ngIf="email.touched && !email.valid">*Enter Valid Email*</span><br>
+</div>
+<input type="radio" id="sports" name="category" value="sports" (click)="onRadioClick('Sports')">
+<label for="sports">Sports</label> &nbsp; &nbsp; &nbsp; &nbsp;
+
+<input type="radio" id="movies" name="category" value="movies" (click)="onRadioClick('Movies')">
+<label for="movies">Movies</label>
+
+<div class="container">
+    <div class="row">
+        <div class="col" *ngIf="selectedCategory==='Sports'">
+            <div *ngFor="let item of sports">
+            <input type="checkbox" [(ngModel)]="item.isSelected" (change)="OnSportsChange()" name="{{item.name}}">&nbsp;<label > {{item.name}} </label>
+        </div>
+        </div>
+        <div class="col" *ngIf="selectedCategory==='Movies'">
+            <div *ngFor="let item of movies">
+            <input type="checkbox" [(ngModel)]="item.isSelected" (change)="OnMovieChange()" name="{{item.name}}">&nbsp;<label >{{item.name}}</label>
+            
+        </div>
+        </div>
+    </div>
+</div>
+
+<p> Your Favourite  {{selectedCategory}} is : {{fav}}   </p>
